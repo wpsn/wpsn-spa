@@ -25,4 +25,17 @@ SPA의 인증을 위해 단순하게 인증을 위한 REST API를 둘 수도 있
 이런 전략을 사용하면 SPA와 웹 페이지 간에 토큰을 주고 받을 필요가 있는데,
 이를 위해 팝업([window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open))과 윈도우 간 메시지 통신([window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage))을 사용합니다.
 
-아래 두 프로젝트를 통해 직접 SPA 인증 절차를 시험해 볼 수 있습니다.
+아래의 두 프로젝트를 통해 직접 SPA 인증 절차를 시험해 볼 수 있습니다.
+
+`api` 프로젝트는 passport를 이용해서 Github OAuth 로그인을 구현한 프로젝트입니다.
+
+`spa` 프로젝트는 React를 이용해서 API 서버에 접속할 수 있는 프로젝트입니다.
+
+인증 절차는 다음과 같이 구현되었습니다.
+
+1. SPA에서 API 서버의 `/auth/` 경로에 대해 팝업을 열고 `message` 이벤트에 대한 핸들러를 등록합니다.
+1. 사용자는 API 서버에 대해 열린 팝업에서 로그인을 시도합니다.
+1. 로그인이 성공하면, 팝업에서 `window.opener.postMessage(...)`를 통해 SPA에 토큰을 전달합니다.
+1. 이제부터 SPA에서 토큰을 통해 인증된 요청을 보낼 수 있게 됩니다.
+
+인증 절차에 대한 자세한 사항은 코드를 참고해주세요.
