@@ -11,10 +11,10 @@ SPA와 API 서버의 출처가 다른 경우에도 쿠키를 사용할 수 있�
 이 때 설정을 통해서 특정 출처의 Ajax 요청에 대해서만 API 서버에 접근 가능하도록 [제한을 둘 수 있습니다.](https://www.npmjs.com/package/cors#configuring-cors)
 
 ```js
-app.use({
+app.use(cors({
   origin: 'http://example.com',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
-})
+}))
 ```
 
 ## SPA Authentication
