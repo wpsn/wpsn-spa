@@ -1,0 +1,4 @@
+[build]
+  base    = "spa"
+  publish = "spa/build"
+  command = "npm run build"
